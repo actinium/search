@@ -13,11 +13,6 @@ INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 _OBJECTS=search.o flags.o
 OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
 
-test:
-	@echo $(OBJECTS)
-	@echo $(INCLUDES)
-	@echo $(CFLAGS)
-
 search: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
