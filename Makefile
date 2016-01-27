@@ -1,8 +1,8 @@
 CXX=clang++
 CFLAGS=-I$(INCDIR) -Wall
 
+INCDIR=include
 SRCDIR=src
-INCDIR=inc
 BINDIR=bin
 
 DIR_GUARD=@mkdir -p $(@D)
