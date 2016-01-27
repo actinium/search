@@ -1,5 +1,7 @@
 CXX=clang++
-CFLAGS=-I$(INCDIR) -Wall
+CFLAGS=-I$(INCDIR) -Wall -DSEARCHVERSION=$(VERSION)
+
+VERSION = 1
 
 INCDIR=include
 SRCDIR=src
