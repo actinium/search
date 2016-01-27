@@ -1,19 +1,30 @@
 CXX=clang++
-CFLAGS=-Wall
+CFLAGS=-I$(INCDIR) -Wall
 
 SRCDIR=src
+INCDIR=inc
 BINDIR=bin
 
-dir_guard=@mkdir -p $(@D)
+DIR_GUARD=@mkdir -p $(@D)
 
-search: $(BINDIR)/search.o
-	$(CXX) $(CFLAGS) -o search $(BINDIR)/search.o
+_INCLUDES=flags.h
+INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
-$(BINDIR)/search.o: $(SRCDIR)/search.cpp
-	$(dir_guard)
-	$(CXX) $(CFLAGS) -c -o $(BINDIR)/search.o $(SRCDIR)/search.cpp
+_OBJECTS=search.o flags.o
+OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
+
+test:
+	@echo $(OBJECTS)
+	@echo $(INCLUDES)
+	@echo $(CFLAGS)
+
+search: $(OBJECTS)
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
+	$(DIR_GUARD)
+	$(CXX) -c -o $@ $< $(CFLAGS)
 
 .PHONY:clean
 clean:
-	rm -rf $(BINDIR)
-	rm -f  search
+	rm -rf $(BINDIR) search
