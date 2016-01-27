@@ -7,10 +7,10 @@ BINDIR=bin
 
 DIR_GUARD=@mkdir -p $(@D)
 
-_INCLUDES=flags.h
+_INCLUDES=options.h
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
-_OBJECTS=search.o flags.o
+_OBJECTS=search.o options.o
 OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
 
 search: $(OBJECTS)
