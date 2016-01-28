@@ -15,6 +15,12 @@ INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 _OBJECTS=search.o options.o
 OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
 
+all: search search_searcher
+
+search: $(SRCDIR)/search.sh
+	cp $(SRCDIR)/search.sh search
+	chmod +x search
+
 search_searcher: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
@@ -24,4 +30,4 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 
 .PHONY:clean
 clean:
-	rm -rf $(BINDIR) search_searcher
+	rm -rf $(BINDIR) search search_searcher
