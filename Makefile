@@ -15,7 +15,7 @@ INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 _OBJECTS=search.o options.o
 OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
 
-search: $(OBJECTS)
+search_searcher: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
