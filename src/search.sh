@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "Hello Search"
+./search_searcher $@
 
 exit 0

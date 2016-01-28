@@ -1,5 +1,5 @@
 #include <iostream>
 
 int main(int argc, char* argv[]){
-  std::cout << "Hello Search" << std::endl;
+  std::cout << "Hello Searcher" << std::endl;
 }
