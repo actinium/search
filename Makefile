@@ -5,7 +5,7 @@ VERSION = 0.1
 
 INCDIR=include
 SRCDIR=src
-BINDIR=bin
+OBJDIR=obj
 
 DIR_GUARD=@mkdir -p $(@D)
 
@@ -13,21 +13,20 @@ _INCLUDES=options.h
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
 _OBJECTS=search.o options.o
-OBJECTS=$(patsubst %,$(BINDIR)/%,$(_OBJECTS))
+OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
 all: search search_searcher
 
 search: $(SRCDIR)/search.sh
-	cp $(SRCDIR)/search.sh search
-	chmod +x search
+	cp $(SRCDIR)/search.sh search && chmod +x search
 
 search_searcher: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
-$(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
 .PHONY:clean
 clean:
-	rm -rf $(BINDIR) search search_searcher
+	rm -rf $(OBJDIR) search search_searcher
