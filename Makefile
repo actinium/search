@@ -24,4 +24,4 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 
 .PHONY:clean
 clean:
-	rm -rf $(BINDIR) search
+	rm -rf $(BINDIR) search_searcher
