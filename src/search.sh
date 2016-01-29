@@ -4,8 +4,12 @@ tmppipe=$(mktemp -u "/tmp/search.pipe.XXXXXX")
 
 if mkfifo -m 600 "$tmppipe"; then
   trap 'rm -rf "$tmppipe"' EXIT INT TERM HUP
-  if ./search_searcher $tmppipe $@; then
-    cat $tmppipe
+  ./search_searcher $tmppipe $@ &
+  read resp < $tmppipe
+  if [[ "$resp" == '' ]]; then
+    echo "No response"
+  else
+    echo $resp
   fi
 else
   echo "Error: Could not create fifo."
