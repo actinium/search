@@ -10,6 +10,6 @@ int main(int argc, char* argv[]){
   if(pipe_fd == -1){
     return 1;
   }
-  write(pipe_fd,"test",5);
   std::cout << "Hello Searcher" << std::endl;
+  write(pipe_fd,"test",5);
 }
