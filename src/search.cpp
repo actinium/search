@@ -11,8 +11,8 @@ int main(int argc, char* argv[]){
   if(pipe_fd == -1){
     return 1;
   }
-  printf("Hello Searcher");
-  
+  printf("Hello Searcher\n");
+
   std::printf ("all files        = %d\n"
                "directories only = %d\n"
                "files only       = %d\n"
