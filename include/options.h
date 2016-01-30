@@ -10,6 +10,8 @@ struct program_options{
   int  number_of_result_lines;
 };
 
-program_options get_options(int argc, char* argv[]);
+extern program_options options;
+
+void get_options(int argc, char* argv[]);
 
 #endif
