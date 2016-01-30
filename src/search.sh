@@ -4,7 +4,7 @@ tmppipe=$(mktemp -u "/tmp/search.pipe.XXXXXX")
 
 if mkfifo -m 600 "$tmppipe"; then
   trap 'rm -rf "$tmppipe"' EXIT INT TERM HUP
-  ./search_searcher $tmppipe $@ &
+  ./search_searcher $@ $tmppipe &
   read resp < $tmppipe
   if [[ "$resp" == '' ]]; then
     echo "No response"
