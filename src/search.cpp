@@ -12,7 +12,9 @@ int main(int argc, char* argv[]){
     return 1;
   }
   printf("Hello Searcher\n");
-  get_options(argc-1, argv);
+  if(!get_options(argc-1, argv)){
+    return 1;
+  }
   std::printf ("all files        = %d\n"
                "directories only = %d\n"
                "files only       = %d\n"

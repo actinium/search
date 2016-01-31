@@ -12,6 +12,6 @@ struct program_options{
 
 extern program_options options;
 
-void get_options(int argc, char* argv[]);
+bool get_options(int argc, char* argv[]);
 
 #endif

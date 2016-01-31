@@ -6,7 +6,7 @@
 
 program_options options = { false,false,false,false,false,5 };
 
-void get_options(int argc, char* argv[]){
+bool get_options(int argc, char* argv[]){
   int c;
   opterr = 0;
   while ((c = getopt (argc, argv, "adfhl:v")) != -1){
@@ -33,14 +33,15 @@ void get_options(int argc, char* argv[]){
         if (optopt == 'l')
           fprintf (stderr, "Option -%c requires an argument.\n", optopt);
         else if (isprint (optopt))
-          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+          fprintf (stderr, "Unknown option '-%c'.\n", optopt);
         else
           fprintf (stderr,
-                   "Unknown option character `\\x%x'.\n",
+                   "Unknown option character '\\x%x'.\n",
                    optopt);
-        return;
+        return false;
       default:
         abort ();
       }
   }
+  return true;
 }
