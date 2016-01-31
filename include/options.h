@@ -14,4 +14,8 @@ extern program_options options;
 
 bool get_options(int argc, char* argv[]);
 
+void print_version();
+
+void print_help();
+
 #endif

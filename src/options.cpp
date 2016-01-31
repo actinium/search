@@ -45,3 +45,19 @@ bool get_options(int argc, char* argv[]){
   }
   return true;
 }
+
+void print_version(){
+  printf("search version %s\n",SEARCHVERSION);
+}
+
+void print_help(){
+  printf("Usage: search [OPTION]... [PATH]\n");
+  printf("\n");
+  printf("Options:\n");
+  printf("  -h    show this help message and exit.\n");
+  printf("  -v    show version info and exit.\n");
+  printf("  -     do not ignore entries starting with '.'.\n");
+  printf("  -l L  use L number of lines to show result.\n");
+  printf("  -f    search only for files. ignore directories.\n");
+  printf("  -d    search only for directories. ignore files.\n");
+}

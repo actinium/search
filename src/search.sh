@@ -6,9 +6,7 @@ if mkfifo -m 600 "$tmppipe"; then
   trap 'rm -rf "$tmppipe"' EXIT INT TERM HUP
   ./search_searcher $@ $tmppipe &
   read resp < $tmppipe
-  if [[ "$resp" == '' ]]; then
-    echo "No response"
-  else
+  if [[ "$resp" != '' ]]; then
     echo $resp
   fi
 else
