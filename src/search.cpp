@@ -22,13 +22,6 @@ int main(int argc, char* argv[]){
     print_version();
     return 0;
   }
-  std::printf ("all files        = %d\n"
-               "directories only = %d\n"
-               "files only       = %d\n"
-               "show help        = %d\n"
-               "number of lines  = %d\n"
-               "show version     = %d\n",
-          options.include_hidden, options.directories_only, options.files_only,
-          options.show_help, options.number_of_result_lines, options.show_version);
+  printf(">\n"); 
   write(pipe_fd,"test",5);
 }

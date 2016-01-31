@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 
-program_options options = { false,false,false,false,false,5 };
+program_options options = { false,false,false,false,false,8 };
 
 bool get_options(int argc, char* argv[]){
   int c;
