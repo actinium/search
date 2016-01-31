@@ -4,7 +4,7 @@
 struct program_options{
   bool show_help;
   bool show_version;
-  bool include_hidden_files;
+  bool include_hidden;
   bool files_only;
   bool directories_only;
   int  number_of_result_lines;
