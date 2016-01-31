@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <fcntl.h>
 #include <unistd.h>
+#include "filefinder.h"
 #include "options.h"
 
 int main(int argc, char* argv[]){
@@ -22,6 +23,14 @@ int main(int argc, char* argv[]){
     print_version();
     return 0;
   }
-  printf(">\n"); 
-  write(pipe_fd,"test",5);
+  
+  std::vector<node> files;
+  find_files(files);
+  
+  printf(">");
+  char input[100];
+  scanf("%s",input);
+  printf("%s[]\n",input);
+  
+  write(pipe_fd,"testing",8);
 }
