@@ -1,5 +1,5 @@
 CXX=clang++
-CFLAGS=-I$(INCDIR) -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
+CFLAGS=-I$(INCDIR) --std=c++11 -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
 
 VERSION = 0.1
 
@@ -12,7 +12,7 @@ DIR_GUARD=@mkdir -p $(@D)
 _INCLUDES=options.h filefinder.h
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
-_OBJECTS=search.o options.o filefinder.h
+_OBJECTS=search.o options.o filefinder.o
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
 all: search search_searcher
