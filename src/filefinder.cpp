@@ -9,7 +9,7 @@ namespace{
 
 std::vector<node> *nodes;
 
-int dirTree(const char *pathname, const struct stat *sbuf, int type,
+int dirTree(const char *pathname, const struct stat *, int type,
         struct FTW *ftwb){
   std::string filename(&pathname[ftwb->base]);
   std::string location(pathname);
