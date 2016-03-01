@@ -9,7 +9,7 @@ OBJDIR=obj
 
 DIR_GUARD=@mkdir -p $(@D)
 
-_INCLUDES=options.h filefinder.h
+_INCLUDES=options.h filefinder.h query_string.h
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
 _OBJECTS=search.o options.o filefinder.o
