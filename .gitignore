@@ -1,5 +1,6 @@
 #Exclude the compiled files
 search
+search_init
 search_searcher
 
 # Compiled Object files
