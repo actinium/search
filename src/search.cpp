@@ -8,10 +8,6 @@ int main(int argc, char* argv[]){
   if(argc < 1){
     return 1;
   }
-  int pipe_fd = open(argv[argc-1],O_WRONLY);
-  if(pipe_fd == -1){
-    return 1;
-  }
   if(!get_options(argc-1, argv)){
     return 1;
   }
@@ -32,5 +28,4 @@ int main(int argc, char* argv[]){
   scanf("%s",input);
   printf("%s[]\n",input);
   
-  write(pipe_fd,"testing",8);
 }
