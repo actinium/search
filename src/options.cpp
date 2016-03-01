@@ -56,7 +56,7 @@ void print_help(){
   printf("Options:\n");
   printf("  -h    show this help message and exit.\n");
   printf("  -v    show version info and exit.\n");
-  printf("  -     do not ignore entries starting with '.'.\n");
+  printf("  -a     do not ignore entries starting with '.'.\n");
   printf("  -l L  use L number of lines to show result.\n");
   printf("  -f    search only for files. ignore directories.\n");
   printf("  -d    search only for directories. ignore files.\n");
