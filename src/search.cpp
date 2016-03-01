@@ -7,10 +7,7 @@
 #include "query_string.h"
 
 int main(int argc, char* argv[]){
-  if(argc < 1){
-    return 1;
-  }
-  if(!get_options(argc-1, argv)){
+  if(!get_options(argc, argv)){
     return 1;
   }
   if(options.show_help){
