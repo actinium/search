@@ -1,8 +1,10 @@
 #include <cstdio>
 #include <fcntl.h>
 #include <unistd.h>
+
 #include "filefinder.h"
 #include "options.h"
+#include "query_string.h"
 
 int main(int argc, char* argv[]){
   if(argc < 1){
@@ -26,6 +28,7 @@ int main(int argc, char* argv[]){
   printf(">");
   char input[100];
   scanf("%s",input);
-  printf("%s[]\n",input);
+  query_string qstr(input);
+  printf("%s\n",qstr.get_str());
   
 }
