@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-./search_searcher
+./search_searcher "$@"
 
 exit 0
