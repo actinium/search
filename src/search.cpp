@@ -29,6 +29,8 @@ int main(int argc, char* argv[]){
   qstr.add('2');
   qstr.cursor_left();
   qstr.add('1');
+  qstr.cursor_left();
+  qstr.remove();
   printf("%s\n",qstr.get_str());
   
 }

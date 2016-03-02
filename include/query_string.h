@@ -13,15 +13,22 @@ class query_string{
     pos++;
   }
   void remove(){
-    // TODO: remove char before pos
+    // TODO: remove multibyte utf8 character
+    if(pos > 0){
+      str.erase(pos-1,1);
+    }
   }
   void cursor_left(){
     // TODO: move to next utf8 character
-    pos--;
+    if(pos > 0){
+      pos--;
+    }
   }
   void cursor_right(){
     // TODO: move to next utf8 character
-    pos++;
+    if(pos < str.length()){
+      pos++;
+    }
   }
   const char* get_str(){
     return str.c_str();
