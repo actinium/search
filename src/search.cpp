@@ -26,6 +26,9 @@ int main(int argc, char* argv[]){
   char input[100];
   scanf("%s",input);
   query_string qstr(input);
+  qstr.add('2');
+  qstr.cursor_left();
+  qstr.add('1');
   printf("%s\n",qstr.get_str());
   
 }

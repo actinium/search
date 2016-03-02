@@ -2,29 +2,33 @@
 #define SEARCH_QUERY_STRING_H
 
 #include <string>
+#include <cstring>
 
 class query_string{
  public:
   query_string():str(""),pos(0){}
-  query_string(const char* s):str(s),pos(0){}
+  query_string(const char* s):str(s),pos(strlen(s)){}
   void add(char c){
-    // add c at pos
+    str.insert(pos, 1, c);
+    pos++;
   }
   void remove(){
-    // remove char before pos
+    // TODO: remove char before pos
   }
   void cursor_left(){
-    // pos left
+    // TODO: move to next utf8 character
+    pos--;
   }
   void cursor_right(){
-    // pos right
+    // TODO: move to next utf8 character
+    pos++;
   }
   const char* get_str(){
     return str.c_str();
   }
   std::size_t get_pos(){
-    //calculate pos
-    return 0;
+    // TODO: calculate ut8 pos
+    return pos;
   }
  private:
   std::string str;
