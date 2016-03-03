@@ -40,21 +40,8 @@ int main(int argc, char* argv[]){
 
   terminal term;
   int c;
-  static struct termios oldt, newt;
-
-  // save and copy terminal settings
-  tcgetattr( STDIN_FILENO, &oldt);
-  newt = oldt;
-
-  // set new terminal settings
-  newt.c_lflag &= ~(ICANON | ECHO);          
-  tcsetattr( STDIN_FILENO, TCSANOW, &newt);
 
   int selected = 0;
-  printf("\n\n\n\n\n");
-  term.cursor_up(5);
-  term.save_cursor_pos();
-  term.restore_cursor_pos();
   term.print_search_line(qstr.get_str(),qstr.get_pos());
   while(1){
     c = getchar();
@@ -94,7 +81,4 @@ int main(int argc, char* argv[]){
       term.print_search_line(qstr.get_str(),qstr.get_pos());
     }
   }
-
-  // restore terminal settings
-  tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
 }

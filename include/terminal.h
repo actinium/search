@@ -3,6 +3,27 @@
 
 class terminal{
  public:
+  terminal(){
+    // save and copy terminal settings
+    tcgetattr( STDIN_FILENO, &oldt);
+    newt = oldt;
+
+    // set new terminal settings
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr( STDIN_FILENO, TCSANOW, &newt);
+
+    //
+    printf("\n\n\n\n\n");
+    cursor_up(5);
+    save_cursor_pos();
+    restore_cursor_pos();
+  }
+
+  ~terminal(){
+    // restore terminal settings
+    tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
+  }
+
   void save_cursor_pos() const{
     printf("\033[s");
   }
@@ -38,6 +59,9 @@ class terminal{
     restore_cursor_pos();
     cursor_right(1+pos);
   }
+ private:
+  struct termios oldt;
+  struct termios newt;
 };
 
 #endif
