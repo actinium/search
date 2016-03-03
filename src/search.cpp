@@ -12,8 +12,10 @@
 void print_result(const terminal& term, query_string qstr, int selected){
   term.restore_cursor_pos();
   for(int i=1; i<= 5; ++i){
+    printf("\n");
+    term.erase_line();
     if(i-1==selected) printf("\033[7m");
-    printf("\n%d: %s",i,qstr.get_str());
+    printf("%d: %s",i,qstr.get_str());
     if(i-1==selected) printf("\033[0m");
   }
 }
