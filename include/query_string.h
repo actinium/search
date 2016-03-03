@@ -17,6 +17,7 @@ class query_string{
     if(pos > 0){
       str.erase(pos-1,1);
     }
+    pos--;
   }
   void cursor_left(){
     // TODO: move to next utf8 character
