@@ -5,3 +5,4 @@
 - utf-8 support
 - fix selected range
 - make sure output is shorter than terminal width
+- print newline before exiting when Ctrl-C is pressed
