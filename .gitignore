@@ -1,6 +1,5 @@
 #Exclude the compiled files
-search
-search_init
+search_init.sh
 search_searcher
 
 # Compiled Object files
