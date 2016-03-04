@@ -9,14 +9,24 @@
 #include "terminal.h"
 
 
+std::vector<node> files;
+
 void print_result(const terminal& term, query_string qstr, int selected){
   term.restore_cursor_pos();
-  for(int i=1; i<= 5; ++i){
+  for(int i=0; i < options.number_of_result_lines; ++i){
     printf("\n");
     term.erase_line();
-    if(i-1==selected) printf("\033[7m");
-    printf("%d: %s",i,qstr.get_str());
-    if(i-1==selected) printf("\033[0m");
+  }
+  term.restore_cursor_pos();
+  int count = 1;
+  for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
+    if(files[i].filename.find(qstr.get_str()) != std::string::npos){
+      printf("\n");
+      if(count-1==selected) printf("\033[7m");
+      printf("%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
+      if(count-1==selected) printf("\033[0m");
+      count++;
+    }
   }
 }
 
@@ -32,10 +42,9 @@ int main(int argc, char* argv[]){
     print_version();
     return 0;
   }
-  
-  std::vector<node> files;
+
   find_files(files);
-  
+
   query_string qstr;
 
   terminal term;
@@ -76,9 +85,15 @@ int main(int argc, char* argv[]){
     }else if(c == 127){ //backspace
       qstr.remove();
       term.print_search_line(qstr.get_str(),qstr.get_pos());
+      print_result(term, qstr, selected);
+      term.restore_cursor_pos();
+      term.cursor_right(qstr.get_pos()+1);
     }else{
       qstr.add(c);
       term.print_search_line(qstr.get_str(),qstr.get_pos());
+      print_result(term, qstr, selected);
+      term.restore_cursor_pos();
+      term.cursor_right(qstr.get_pos()+1);
     }
   }
 }

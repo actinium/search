@@ -13,8 +13,10 @@ class terminal{
     tcsetattr( STDIN_FILENO, TCSANOW, &newt);
 
     //
-    printf("\n\n\n\n\n");
-    cursor_up(5);
+    for(int i=0; i < options.number_of_result_lines; ++i){
+      printf("\n");
+    }
+    cursor_up(options.number_of_result_lines);
     save_cursor_pos();
     restore_cursor_pos();
   }
