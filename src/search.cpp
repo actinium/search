@@ -18,14 +18,17 @@ void print_result(const terminal& term, query_string qstr, int selected){
     term.erase_line();
   }
   term.restore_cursor_pos();
-  int count = 1;
-  for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
-    if(files[i].filename.find(qstr.get_str()) != std::string::npos){
-      printf("\n");
-      if(count-1==selected) printf("\033[7m");
-      printf("%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
-      if(count-1==selected) printf("\033[0m");
-      count++;
+  std::string str(qstr.get_str());
+  if( str != ""){
+    int count = 1;
+    for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
+      if(files[i].filename.find(qstr.get_str()) != std::string::npos){
+        printf("\n");
+        if(count-1==selected) printf("\033[7m");
+        printf("%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
+        if(count-1==selected) printf("\033[0m");
+        count++;
+      }
     }
   }
 }
@@ -60,11 +63,18 @@ int main(int argc, char* argv[]){
         c=getchar();
         if(c == 'A'){ // up
           selected--;
+          if(selected < 0){
+            selected = 0;
+          }
           print_result(term, qstr, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
           selected++;
+          if(selected > options.number_of_result_lines-1){
+            // TODO: should be number of results.
+            selected = options.number_of_result_lines-1;
+          }
           print_result(term, qstr, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
