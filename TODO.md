@@ -1,5 +1,6 @@
 #Todo
 
+- make search case insensitive
 - change all stdout prints to stderr
 - change dir on enter
 - utf-8 support
