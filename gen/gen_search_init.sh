@@ -1,10 +1,10 @@
 #!/bin/sh
 
-SEARCHDIR=$(pwd);
+SEARCHDIR=${1-pwd};
 
-echo "function search {" > init_search;
-echo "  $SEARCHDIR/searcher \$@;" >> init_search;
-echo "}" >> init_search;
+echo "function search {" > $SEARCHDIR/init_search;
+echo "  $SEARCHDIR/searcher \$@;" >> $SEARCHDIR/init_search;
+echo "}" >> $SEARCHDIR/init_search;
 
 
 exit 0;

@@ -28,6 +28,20 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
+.PHONY: install
+install: searcher
+	@echo "Installing search."
+	@sudo mkdir -p /usr/local/bin/search
+	@sudo cp searcher /usr/local/bin/search/searcher
+	@sudo ./gen/gen_search_init.sh /usr/local/bin/search
+
+.PHONY: uninstall
+uninstall:
+	@echo "Uninstalling search."
+	@sudo rm -f /usr/local/bin/search/init_search
+	@sudo rm -f /usr/local/bin/search/searcher
+	@sudo rm -df /usr/local/bin/search
+
 .PHONY:clean
 clean:
 	rm -rf $(OBJDIR) init_search searcher
