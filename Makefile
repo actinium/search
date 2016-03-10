@@ -16,12 +16,12 @@ INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 _OBJECTS=search.o options.o filefinder.o
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
-all: search_init.sh search_searcher
+all: init_search searcher
 
-search_init.sh: $(GENDIR)/gen_search_init.sh
+init_search: $(GENDIR)/gen_search_init.sh
 	$(GENDIR)/gen_search_init.sh
 
-search_searcher: $(OBJECTS)
+searcher: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
@@ -30,4 +30,4 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 
 .PHONY:clean
 clean:
-	rm -rf $(OBJDIR) search_init.sh search_searcher
+	rm -rf $(OBJDIR) init_search searcher

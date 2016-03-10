@@ -2,9 +2,9 @@
 
 SEARCHDIR=$(pwd);
 
-echo "function search {" > search_init.sh;
-echo "  $SEARCHDIR/search_searcher \$@;" >> search_init.sh;
-echo "}" >> search_init.sh;
+echo "function search {" > init_search;
+echo "  $SEARCHDIR/searcher \$@;" >> init_search;
+echo "}" >> init_search;
 
 
 exit 0;
