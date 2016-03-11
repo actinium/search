@@ -31,16 +31,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 .PHONY: install
 install: searcher
 	@echo "Installing search."
-	mkdir -p /usr/local/bin/search
-	cp searcher /usr/local/bin/search/searcher
-	./gen/gen_search_init.sh /usr/local/bin/search
+	cp searcher /usr/local/bin/searcher
+	./gen/gen_search_init.sh /usr/local/bin
 
 .PHONY: uninstall
 uninstall:
 	@echo "Uninstalling search."
-	rm -f /usr/local/bin/search/init_search
-	rm -f /usr/local/bin/search/searcher
-	rm -df /usr/local/bin/search
+	rm -f /usr/local/bin/init_search
+	rm -f /usr/local/bin/searcher
 
 .PHONY:clean
 clean:
