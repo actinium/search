@@ -32,7 +32,7 @@ int dirTree(const char *pathname, const struct stat *, int type,
 
 void find_files(std::vector<node>& ns){
   nodes = &ns;
-  int flags = 0 | FTW_ACTIONRETVAL;
+  int flags = FTW_ACTIONRETVAL;
   if(nftw(".",dirTree,10,flags)== -1){
   }
 }
