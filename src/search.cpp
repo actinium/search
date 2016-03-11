@@ -14,7 +14,7 @@ std::vector<node> files;
 void print_result(const terminal& term, query_string qstr, int selected){
   term.restore_cursor_pos();
   for(int i=0; i < options.number_of_result_lines; ++i){
-    printf("\n");
+    fprintf(stderr,"\n");
     term.erase_line();
   }
   term.restore_cursor_pos();
@@ -23,10 +23,10 @@ void print_result(const terminal& term, query_string qstr, int selected){
     int count = 1;
     for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
       if(files[i].filename.find(qstr.get_str()) != std::string::npos){
-        printf("\n");
-        if(count-1==selected) printf("\033[7m");
-        printf("%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
-        if(count-1==selected) printf("\033[0m");
+        fprintf(stderr,"\n");
+        if(count-1==selected) fprintf(stderr,"\033[7m");
+        fprintf(stderr,"%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
+        if(count-1==selected) fprintf(stderr,"\033[0m");
         count++;
       }
     }
@@ -89,7 +89,7 @@ int main(int argc, char* argv[]){
     }else if(c == 9){
       // tab
     }else if(c == 10){ // enter
-      printf("\n");
+      fprintf(stderr,"\n");
       return 0;
     }else if(c == 127){ //backspace
       qstr.remove();

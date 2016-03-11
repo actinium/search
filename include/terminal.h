@@ -14,7 +14,7 @@ class terminal{
 
     //
     for(int i=0; i < options.number_of_result_lines; ++i){
-      printf("\n");
+      fprintf(stderr,"\n");
     }
     cursor_up(options.number_of_result_lines);
     save_cursor_pos();
@@ -27,37 +27,37 @@ class terminal{
   }
 
   void save_cursor_pos() const{
-    printf("\033[s");
+    fprintf(stderr,"\033[s");
   }
 
   void restore_cursor_pos() const{
-    printf("\033[u");
+    fprintf(stderr,"\033[u");
   }
 
   void erase_line() const{
-    printf("\033[K");
+    fprintf(stderr,"\033[K");
   }
 
   void cursor_left(int n = 1) const{
-    printf("\033[%dD",n);
+    fprintf(stderr,"\033[%dD",n);
   }
 
   void cursor_right(int n = 1) const{
-    printf("\033[%dC",n);
+    fprintf(stderr,"\033[%dC",n);
   }
 
   void cursor_up(int n = 1) const{
-    printf("\033[%dA",n);
+    fprintf(stderr,"\033[%dA",n);
   }
 
   void cursor_down(int n = 1) const{
-    printf("\033[%dB",n);
+    fprintf(stderr,"\033[%dB",n);
   }
 
   void print_search_line(std::string str, int pos) const{
     restore_cursor_pos();
     erase_line();
-    printf(">%s", str.c_str());
+    fprintf(stderr,">%s", str.c_str());
     restore_cursor_pos();
     cursor_right(1+pos);
   }
