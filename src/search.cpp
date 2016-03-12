@@ -11,25 +11,38 @@
 
 std::vector<node> files;
 
-void print_result(const terminal& term, query_string qstr, int selected){
+std::vector<node> search(query_string qstr){
+  std::vector<node> result;
+
+  std::string str(qstr.get_str());
+  if( str != ""){
+    int count = 1;
+    for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
+      if(files[i].filename.find(qstr.get_str()) != std::string::npos){
+        result.push_back(files[i]);
+        count++;
+      }
+    }
+  }
+
+  return result;
+}
+
+void print_result(const terminal& term, query_string qstr, std::size_t selected){
   term.restore_cursor_pos();
   for(int i=0; i < options.number_of_result_lines; ++i){
     fprintf(stderr,"\n");
     term.erase_line();
   }
   term.restore_cursor_pos();
-  std::string str(qstr.get_str());
-  if( str != ""){
-    int count = 1;
-    for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
-      if(files[i].filename.find(qstr.get_str()) != std::string::npos){
-        fprintf(stderr,"\n");
-        if(count-1==selected) fprintf(stderr,"\033[7m");
-        fprintf(stderr,"%d: %s%s",count,files[i].location.c_str(), files[i].filename.c_str());
-        if(count-1==selected) fprintf(stderr,"\033[0m");
-        count++;
-      }
-    }
+
+  std::vector<node> result = search(qstr);
+
+  for(std::size_t i=1; i < result.size(); ++i){
+    fprintf(stderr,"\n");
+    if(i-1==selected) fprintf(stderr,"\033[7m");
+    fprintf(stderr,"%lu: %s%s",i,result[i].location.c_str(), result[i].filename.c_str());
+    if(i-1==selected) fprintf(stderr,"\033[0m");
   }
 }
 
