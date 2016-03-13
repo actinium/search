@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
   terminal term;
   int c;
 
-  int selected = 0;
+  unsigned selected = 0;
   std::vector<node> results;
   term.print_search_line(qstr.get_str(),qstr.get_pos());
   while(1){
@@ -74,18 +74,16 @@ int main(int argc, char* argv[]){
       if(c == '['){
         c=getchar();
         if(c == 'A'){ // up
-          selected--;
-          if(selected < 0){
-            selected = 0;
+          if(selected > 0){
+            selected--;
           }
           print_result(term, results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
           selected++;
-          if(selected > options.number_of_result_lines-1){
-            // TODO: should be number of results.
-            selected = options.number_of_result_lines-1;
+          if(selected > results.size()-1){
+            selected = results.size()-1;
           }
           print_result(term, results, selected);
           term.restore_cursor_pos();
