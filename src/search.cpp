@@ -28,7 +28,7 @@ std::vector<node> search(query_string qstr){
   return result;
 }
 
-void print_result(const terminal& term, query_string qstr, std::size_t selected){
+void print_result(const terminal& term,const std::vector<node>& result, std::size_t selected){
   term.restore_cursor_pos();
   for(int i=0; i < options.number_of_result_lines; ++i){
     fprintf(stderr,"\n");
@@ -36,12 +36,10 @@ void print_result(const terminal& term, query_string qstr, std::size_t selected)
   }
   term.restore_cursor_pos();
 
-  std::vector<node> result = search(qstr);
-
-  for(std::size_t i=1; i < result.size(); ++i){
+  for(std::size_t i=1; i <= result.size(); ++i){
     fprintf(stderr,"\n");
     if(i-1==selected) fprintf(stderr,"\033[7m");
-    fprintf(stderr,"%lu: %s%s",i,result[i].location.c_str(), result[i].filename.c_str());
+    fprintf(stderr,"%lu: %s%s",i,result[i-1].location.c_str(), result[i-1].filename.c_str());
     if(i-1==selected) fprintf(stderr,"\033[0m");
   }
 }
@@ -67,6 +65,7 @@ int main(int argc, char* argv[]){
   int c;
 
   int selected = 0;
+  std::vector<node> results;
   term.print_search_line(qstr.get_str(),qstr.get_pos());
   while(1){
     c = getchar();
@@ -79,7 +78,7 @@ int main(int argc, char* argv[]){
           if(selected < 0){
             selected = 0;
           }
-          print_result(term, qstr, selected);
+          print_result(term, results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
@@ -88,7 +87,7 @@ int main(int argc, char* argv[]){
             // TODO: should be number of results.
             selected = options.number_of_result_lines-1;
           }
-          print_result(term, qstr, selected);
+          print_result(term, results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'C'){ // right
@@ -107,13 +106,15 @@ int main(int argc, char* argv[]){
     }else if(c == 127){ //backspace
       qstr.remove();
       term.print_search_line(qstr.get_str(),qstr.get_pos());
-      print_result(term, qstr, selected);
+      results = search(qstr);
+      print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else{
       qstr.add(c);
       term.print_search_line(qstr.get_str(),qstr.get_pos());
-      print_result(term, qstr, selected);
+      results = search(qstr);
+      print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }
