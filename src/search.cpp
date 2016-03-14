@@ -28,22 +28,6 @@ std::vector<node> search(query_string qstr){
   return result;
 }
 
-void print_result(const terminal& term,const std::vector<node>& result, std::size_t selected){
-  term.restore_cursor_pos();
-  for(int i=0; i < options.number_of_result_lines; ++i){
-    fprintf(stderr,"\n");
-    term.erase_line();
-  }
-  term.restore_cursor_pos();
-
-  for(std::size_t i=1; i <= result.size(); ++i){
-    fprintf(stderr,"\n");
-    if(i-1==selected) fprintf(stderr,"\033[7m");
-    fprintf(stderr,"%lu: %s%s",i,result[i-1].location.c_str(), result[i-1].filename.c_str());
-    if(i-1==selected) fprintf(stderr,"\033[0m");
-  }
-}
-
 int main(int argc, char* argv[]){
   if(!get_options(argc, argv)){
     return 1;
@@ -77,7 +61,7 @@ int main(int argc, char* argv[]){
           if(selected > 0){
             selected--;
           }
-          print_result(term, results, selected);
+          term.print_result(term, results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
@@ -85,7 +69,7 @@ int main(int argc, char* argv[]){
           if(selected > results.size()-1){
             selected = results.size()-1;
           }
-          print_result(term, results, selected);
+          term.print_result(term, results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'C'){ // right
@@ -105,14 +89,14 @@ int main(int argc, char* argv[]){
       qstr.remove();
       term.print_search_line(qstr.get_str(),qstr.get_pos());
       results = search(qstr);
-      print_result(term, results, selected);
+      term.print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else{
       qstr.add(c);
       term.print_search_line(qstr.get_str(),qstr.get_pos());
       results = search(qstr);
-      print_result(term, results, selected);
+      term.print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }
