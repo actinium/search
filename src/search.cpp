@@ -85,12 +85,21 @@ int main(int argc, char* argv[]){
     }else if(c == 9){
       // tab
     }else if(c == 10){ // enter
+      if(results.size()!=0){
+
+      }
       fprintf(stderr,"\n");
       return 0;
     }else if(c == 127){ //backspace
       qstr.remove();
       term.print_search_line(qstr.get_str(),qstr.get_pos());
       results = search(qstr);
+      if(selected >= results.size()){
+        selected = results.size()-1;
+      }
+      if(results.size()==0){
+        selected = 0;
+      }
       term.print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
@@ -98,6 +107,12 @@ int main(int argc, char* argv[]){
       qstr.add(c);
       term.print_search_line(qstr.get_str(),qstr.get_pos());
       results = search(qstr);
+      if(selected >= results.size()){
+        selected = results.size()-1;
+      }
+      if(results.size()==0){
+        selected = 0;
+      }
       term.print_result(term, results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
