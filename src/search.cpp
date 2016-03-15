@@ -73,11 +73,13 @@ int main(int argc, char* argv[]){
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'C'){ // right
-          term.cursor_right();
-          qstr.cursor_right();
+          if(qstr.cursor_right()){
+            term.cursor_right();
+          }
         }else if(c == 'D'){ // left
-          term.cursor_left();
-          qstr.cursor_left();
+          if(qstr.cursor_left()){
+            term.cursor_left();
+          }
         }
       }
     }else if(c == 9){

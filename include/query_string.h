@@ -19,17 +19,21 @@ class query_string{
       pos--;
     }
   }
-  void cursor_left(){
+  bool cursor_left(){
     // TODO: move to next utf8 character
     if(pos > 0){
       pos--;
+      return true;
     }
+    return false;
   }
-  void cursor_right(){
+  bool cursor_right(){
     // TODO: move to next utf8 character
     if(pos < str.length()){
       pos++;
+      return true;
     }
+    return false;
   }
   const char* get_str(){
     return str.c_str();
