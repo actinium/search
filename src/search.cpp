@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
       // tab
     }else if(c == 10){ // enter
       if(results.size()!=0){
-
+        fprintf(stdout,"%s\n",results[selected].location.c_str());
       }
       fprintf(stderr,"\n");
       return 0;
