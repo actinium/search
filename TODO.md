@@ -1,6 +1,5 @@
 #Todo
 
-- change dir on enter
 - utf-8 support (Maybe use [ICU](http://site.icu-project.org/))
 - make search case insensitive
 - make sure output is shorter than terminal width
