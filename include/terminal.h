@@ -75,7 +75,7 @@ class terminal{
     for(std::size_t i=1; i <= result.size(); ++i){
       fprintf(stderr,"\n");
       if(i-1==selected) fprintf(stderr,"\033[7m");
-      fprintf(stderr,"%lu: %s%s",i,result[i-1].location.c_str(), result[i-1].filename.c_str());
+      fprintf(stderr,"%lu: %s%s",(unsigned long)i,result[i-1].location.c_str(), result[i-1].filename.c_str());
       if(i-1==selected) fprintf(stderr,"\033[0m");
     }
   }
