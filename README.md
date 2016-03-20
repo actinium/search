@@ -1,5 +1,5 @@
 # search
 
-##INSTALLATION
+## Installation
 
-##Usage
+## Usage
