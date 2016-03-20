@@ -85,7 +85,11 @@ int main(int argc, char* argv[]){
       // tab
     }else if(c == 10){ // enter
       if(results.size()!=0){
-        fprintf(stdout,"%s\n",results[selected].location.c_str());
+        if(results[selected].is_dir){
+          fprintf(stdout,"%s%s\n",results[selected].location.c_str(),results[selected].filename.c_str());
+        }else{
+          fprintf(stdout,"%s\n",results[selected].location.c_str());
+        }
       }
       fprintf(stderr,"\n");
       return 0;
