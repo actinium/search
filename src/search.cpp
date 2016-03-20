@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <fcntl.h>
-#include <termios.h>
 #include <unistd.h>
 
 #include "filefinder.h"
