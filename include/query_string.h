@@ -35,6 +35,9 @@ class query_string{
     }
     return false;
   }
+  bool found_in(std::string filename){
+    return filename.find(str) != std::string::npos;
+  }
   const char* get_str(){
     return str.c_str();
   }
