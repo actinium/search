@@ -1,4 +1,4 @@
-# search
+# SEARCH
 
 ## Installation
 
