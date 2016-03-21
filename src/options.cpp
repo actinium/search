@@ -43,6 +43,9 @@ bool get_options(int argc, char* argv[]){
         abort ();
       }
   }
+  if(optind < argc){
+    options.search_dir = std::string(argv[optind]);
+  }
   return true;
 }
 
