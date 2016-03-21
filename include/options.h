@@ -1,7 +1,10 @@
 #ifndef SEARCH_OPTIONS_H
 #define SEARCH_OPTIONS_H
 
+#include <string>
+
 struct program_options{
+  std::string search_dir;
   bool show_help;
   bool show_version;
   bool include_hidden;

@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 
-program_options options = { false,false,false,false,false,8 };
+program_options options = {".",false,false,false,false,false,8 };
 
 bool get_options(int argc, char* argv[]){
   int c;
@@ -51,7 +51,7 @@ void print_version(){
 }
 
 void print_help(){
-  fprintf(stderr,"Usage: search [OPTION]...\n");
+  fprintf(stderr,"Usage: search [OPTION]... DIRECTORY\n");
   fprintf(stderr,"\n");
   fprintf(stderr,"Options:\n");
   fprintf(stderr,"  -h    show this help message and exit.\n");
