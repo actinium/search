@@ -34,5 +34,6 @@ void find_files(std::vector<node>& ns){
   nodes = &ns;
   int flags = FTW_ACTIONRETVAL;
   if(nftw(options.search_dir.c_str(),dirTree,10,flags)== -1){
+    // TODO
   }
 }
