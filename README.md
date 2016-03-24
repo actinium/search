@@ -4,6 +4,7 @@
 
 ## Usage
 
+```
   Usage: search [OPTION]... DIRECTORY
 
   Options:
@@ -13,7 +14,7 @@
     -l L  use L number of lines to show result.
     -f    search only for files. ignore directories.
     -d    search only for directories. ignore files.
-
+```
 
 ## License
 This project is licensed under the MIT License. See the full license text in
