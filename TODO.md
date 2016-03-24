@@ -1,5 +1,6 @@
 #Todo
 
+- add file-only and directory-only options
 - utf-8 support (Maybe use [ICU](http://site.icu-project.org/))
 - make search case insensitive
 - make sure output is shorter than terminal width
