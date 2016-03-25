@@ -1,5 +1,7 @@
 # SEARCH
 
+Interactive command-line file searching.
+
 ## Installation
 
 ## Usage
