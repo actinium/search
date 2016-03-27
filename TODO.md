@@ -1,6 +1,5 @@
 #Todo
 
-- change selection with tab key
 - add file-only and directory-only options
 - utf-8 support (Maybe use [ICU](http://site.icu-project.org/))
 - make search case insensitive

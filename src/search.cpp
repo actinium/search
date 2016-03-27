@@ -79,10 +79,25 @@ int main(int argc, char* argv[]){
           if(qstr.cursor_left()){
             term.cursor_left();
           }
+        }else if(c == 'Z'){ // shift-tab
+          if(selected > 0){
+            selected--;
+          }else{
+            selected = results.size()-1;
+          }
+          term.print_result(term, results, selected);
+          term.restore_cursor_pos();
+          term.cursor_right(qstr.get_pos()+1);
         }
       }
-    }else if(c == 9){
-      // tab
+    }else if(c == 9){ // tab
+      selected++;
+      if(selected > results.size()-1){
+        selected = 0;
+      }
+      term.print_result(term, results, selected);
+      term.restore_cursor_pos();
+      term.cursor_right(qstr.get_pos()+1);
     }else if(c == 10){ // enter
       if(results.size()!=0){
         if(results[selected].is_dir){
