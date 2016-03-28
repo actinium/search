@@ -3,25 +3,22 @@
 Interactive command-line file searching.
 
 ## Installation
-####Step 1.
-Clone the repo:
-```
+##### 1. Clone the repository:
+```shell
 git clone https://github.com/actinium/search.git
 ```
 
-####Step 2.
-Build and install with:
-```
+##### 2. Build and install with:
+``` shell
 make install
 ```
 This will move `searcher` and `init_search` to `/usr/local/bin/`.
 
-####Step 3.
-Add:
-```
+##### 3. Add search function to your shell configuration file:
+``` 
+# add this to your shell rc-file
 source /usr/local/bin/init_search
 ```
-to your shell rc-file.
 
 ## Usage
 
