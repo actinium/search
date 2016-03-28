@@ -4,6 +4,7 @@ Interactive command-line file searching.
 
 ## Installation
 ###Step 1.
+Run:
 
 ```
 make install
@@ -12,7 +13,13 @@ make install
 This will move `searcher` and `init_search` to `/usr/local/bin/`.
 
 ###Step 2.
-Add `source /usr/local/bin/init_search` to your shell rc-file.
+Add:
+
+```
+source /usr/local/bin/init_search
+```
+
+to your shell rc-file.
 
 ## Usage
 
