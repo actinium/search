@@ -16,7 +16,7 @@ This will move `searcher` and `init_search` to `/usr/local/bin/`.
 
 ##### 3. Add search function to your shell configuration file:
 ``` 
-# add this to your shell rc-file
+# Add this line to your shell rc-file
 source /usr/local/bin/init_search
 ```
 
