@@ -10,7 +10,7 @@ git clone https://github.com/actinium/search.git
 
 ##### 2. Build and install with:
 ``` shell
-make install
+sudo make install
 ```
 This will move `searcher` and `init_search` to `/usr/local/bin/`.
 
