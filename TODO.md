@@ -6,8 +6,8 @@
 
 ##### terminal:
 
-- print newline before exiting when Ctrl-C is pressed
 - make sure output is shorter than terminal width
+- print newline before exiting when Ctrl-C is pressed
 
 ##### utf-8:
 
