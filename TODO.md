@@ -1,7 +1,6 @@
 #Todo
 
 - sort files on depth
-- add file-only and directory-only options
 - add long options support
 
 ##### terminal:

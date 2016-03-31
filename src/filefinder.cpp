@@ -11,7 +11,7 @@ namespace{
 std::vector<node> *nodes;
 
 int dirTree(const char *pathname, const struct stat *, int type,
-        struct FTW *ftwb){
+            struct FTW *ftwb){
   std::string filename(&pathname[ftwb->base]);
   if(filename == "."){
     return 0;
@@ -19,7 +19,11 @@ int dirTree(const char *pathname, const struct stat *, int type,
   if(filename[0] != '.' || options.include_hidden){
     std::string location(pathname);
     location = location.substr(0,location.size()-filename.size());
-    nodes->emplace_back(filename,location,ftwb->level, type == FTW_D);
+    if( (options.files_only && type != FTW_D) ||
+       (options.directories_only && type == FTW_D) ||
+       (!options.files_only && !options.directories_only) ){
+      nodes->emplace_back(filename,location,ftwb->level, type == FTW_D);
+    }
     return 0;
   }else if(type != FTW_D){
     return 0;
