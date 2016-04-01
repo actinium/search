@@ -2,6 +2,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <algorithm>
+
 #include "filefinder.h"
 #include "options.h"
 #include "query_string.h"
@@ -41,6 +43,10 @@ int main(int argc, char* argv[]){
   }
 
   find_files(files);
+
+  std::sort(files.begin(),files.end(),[](const node& n1, const node& n2){
+            return n1.level < n2.level;
+            });
 
   query_string qstr;
 

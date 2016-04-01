@@ -1,6 +1,5 @@
 #Todo
 
-- sort files on depth
 - add long options support
 
 ##### terminal:
