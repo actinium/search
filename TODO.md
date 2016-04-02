@@ -1,6 +1,7 @@
 #Todo
 
 - add long options support
+- exit search with escape (Needs new way to handle input)
 
 ##### terminal:
 
