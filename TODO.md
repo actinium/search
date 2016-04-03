@@ -12,3 +12,7 @@
 
 - utf-8 support (Maybe use [ICU](http://site.icu-project.org/))
 - make search case insensitive
+
+##### portability:
+
+- make filefinder work on systems without FTW_ACTIONRETVAL
