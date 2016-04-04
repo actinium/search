@@ -15,4 +15,4 @@
 
 ##### portability:
 
-- make filefinder work on systems without `FTW_ACTIONRETVAL`
+- make filefinder work on systems without `FTW_ACTIONRETVAL` and `FTW_SKIP_SUBTREE`
