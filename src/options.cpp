@@ -72,5 +72,5 @@ void print_help(){
   fprintf(stderr,"  -a    --all        do not ignore entries starting with '.'.\n");
   fprintf(stderr,"  -d    --dirs-only  search only for directories. ignore files.\n");
   fprintf(stderr,"  -f    --files-only search only for files. ignore directories.\n");
-  fprintf(stderr,"  -l L  --lines=L    use L number of lines to show result.\n");
+  fprintf(stderr,"  -l N  --lines=N    use N number of lines to show result.\n");
 }
