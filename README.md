@@ -30,7 +30,7 @@ Options:
   -a    --all        do not ignore entries starting with '.'.
   -d    --dirs-only  search only for directories. ignore files.
   -f    --files-only search only for files. ignore directories.
-  -l L  --lines=L    use L number of lines to show result.
+  -l N  --lines=N    use N number of lines to show result.
 ```
 
 ## License
