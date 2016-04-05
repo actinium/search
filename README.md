@@ -22,15 +22,15 @@ source /usr/local/bin/init_search
 
 ## Usage
 ```
-  Usage: search [OPTION]... DIRECTORY
+Usage: search [OPTION]... DIRECTORY
 
-  Options:
-    -h    --help        show this help message and exit.
-    -v    --version     show version info and exit.
-    -a    --all         do not ignore entries starting with '.'.
-    -l L  --lines=L     use L number of lines to show result.
-    -f    --files-only  search only for files. ignore directories.
-    -d    --dirs-only   search only for directories. ignore files.
+Options:
+  -h    --help       show this help message and exit.
+  -v    --version    show version info and exit.
+  -a    --all        do not ignore entries starting with '.'.
+  -d    --dirs-only  search only for directories. ignore files.
+  -f    --files-only search only for files. ignore directories.
+  -l L  --lines=L    use L number of lines to show result.
 ```
 
 ## License
