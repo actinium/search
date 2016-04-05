@@ -27,6 +27,7 @@ bool get_options(int argc, char* argv[]){
     if (c == -1)
       break;
 
+    int l_arg;
     switch (c){
       case 'h':
         options.show_help = true;
@@ -38,7 +39,13 @@ bool get_options(int argc, char* argv[]){
         options.include_hidden = true;
         break;
       case 'l':
-        options.number_of_result_lines = std::atoi(optarg);
+        l_arg = std::atoi(optarg);
+        if(l_arg > 0){
+          options.number_of_result_lines = l_arg;
+        }else{
+          fprintf(stderr,"Invalid argument to option -l/--lines\n");
+          return false;
+        }
         break;
       case 'd':
         options.directories_only = true;
@@ -47,7 +54,6 @@ bool get_options(int argc, char* argv[]){
         options.files_only = true;
         break;
       case '?':
-        /* getopt_long already printed an error message. */
         return false;
       default:
         abort ();
