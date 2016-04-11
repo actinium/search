@@ -5,7 +5,7 @@ VERSION = 0.1
 
 INCDIR=include
 SRCDIR=src
-GENDIR=gen
+SCRIPTDIR=script
 OBJDIR=obj
 
 DIR_GUARD=@mkdir -p $(@D)
@@ -18,8 +18,8 @@ OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
 all: init_search searcher
 
-init_search: $(GENDIR)/gen_search_init.sh
-	$(GENDIR)/gen_search_init.sh
+init_search: $(SCRIPTDIR)/gen_search_init.sh
+	$(SCRIPTDIR)/gen_search_init.sh
 
 searcher: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
@@ -32,7 +32,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 install: searcher
 	@echo "Installing search."
 	cp searcher /usr/local/bin/searcher
-	./gen/gen_search_init.sh /usr/local/bin
+	$(SCRIPTDIR)/gen_search_init.sh /usr/local/bin
 
 .PHONY: uninstall
 uninstall:
