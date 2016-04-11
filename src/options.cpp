@@ -24,8 +24,9 @@ bool get_options(int argc, char* argv[]){
     c = getopt_long (argc, argv, "hval:df",
                      long_options, &option_index);
 
-    if (c == -1)
+    if (c == -1){
       break;
+    }
 
     int l_arg;
     switch (c){
