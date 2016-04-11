@@ -12,7 +12,8 @@ terminal::terminal(){
   newt.c_lflag &= ~(ICANON | ECHO);
   tcsetattr( STDIN_FILENO, TCSANOW, &newt);
 
-  //
+  // print as many newlines as number_of_result_lines to
+  // enable moving the cursor up and down.
   for(int i=0; i < options.number_of_result_lines; ++i){
     fprintf(stderr,"\n");
   }
