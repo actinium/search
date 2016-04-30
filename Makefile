@@ -19,12 +19,15 @@ OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 all: init_search searcher
 
 init_search: $(SCRIPTDIR)/gen_search_init.sh
+	@echo "\033[1m\033[95m[Generating init script]\033[0m"
 	$(SCRIPTDIR)/gen_search_init.sh
 
 searcher: $(OBJECTS)
+	@echo "\033[1m\033[95m[Building $@]\033[0m"
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
+	@echo "\033[1m\033[95m[Compiling $<]\033[0m"
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
@@ -42,4 +45,5 @@ uninstall:
 
 .PHONY:clean
 clean:
+	@echo "\033[1m\033[95m[Cleaning up]\033[0m"
 	rm -rf $(OBJDIR) init_search searcher
