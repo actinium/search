@@ -32,14 +32,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
 .PHONY: install
-install: searcher
-	@echo "Installing search."
+install: root_check searcher
+	@echo "\033[1m\033[95m[Installing search]\033[0m"
 	cp searcher /usr/local/bin/searcher
 	$(SCRIPTDIR)/gen_search_init.sh /usr/local/bin
 
 .PHONY: uninstall
-uninstall:
-	@echo "Uninstalling search."
+uninstall: root_check
+	@echo "\033[1m\033[95m[Uninstalling search]\033[0m"
 	rm -f /usr/local/bin/init_search
 	rm -f /usr/local/bin/searcher
 
@@ -47,3 +47,14 @@ uninstall:
 clean:
 	@echo "\033[1m\033[95m[Cleaning up]\033[0m"
 	rm -rf $(OBJDIR) init_search searcher
+
+.PHONY:root_check
+root_check:
+	@id_check=`id -u` ; \
+  if test $$id_check != 0 ; \
+  then \
+		echo "\033[1m\033[91mError: \033[21m\033[39mInstalling and uninstalling requires root privileges!\033[0m"; \
+		return 1;\
+  else \
+		return 0;\
+  fi
