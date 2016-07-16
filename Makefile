@@ -35,13 +35,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 install: searcher
 	@echo "\033[1m\033[95m[Installing search]\033[0m"
 	@id_check=`id -u`; \
-  if test $$id_check != 0; \
-  then \
+	if test $$id_check != 0; \
+	then \
 		echo "\033[1m\033[91mError: \033[21m\033[39mInstalling search requires root privileges!\033[0m"; \
 		return 1; \
-  else \
+	else \
 		return 0; \
-  fi
+	fi
 	cp searcher /usr/local/bin/searcher
 	$(SCRIPTDIR)/gen_search_init.sh /usr/local/bin
 
@@ -49,13 +49,13 @@ install: searcher
 uninstall:
 	@echo "\033[1m\033[95m[Uninstalling search]\033[0m"
 	@id_check=`id -u`; \
-  if test $$id_check != 0; \
-  then \
+	if test $$id_check != 0; \
+	then \
 		echo "\033[1m\033[91mError: \033[21m\033[39mUninstalling search requires root privileges!\033[0m"; \
 		return 1; \
-  else \
+	else \
 		return 0; \
-  fi
+	fi
 	rm -f /usr/local/bin/init_search
 	rm -f /usr/local/bin/searcher
 
