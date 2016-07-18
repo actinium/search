@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include <algorithm>
+#include <string>
 
 #include "filefinder.h"
 #include "options.h"

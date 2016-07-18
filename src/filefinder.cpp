@@ -1,10 +1,13 @@
 #include "filefinder.h"
-#include "options.h"
 
 #if ! defined(_XOPEN_SOURCE) || _XOPEN_SOURCE < 600
 #define _XOPEN_SOURCE 600       /* Get nftw() and S_IFSOCK declarations */
 #endif
 #include <ftw.h>
+
+#include <string>
+
+#include "options.h"
 
 namespace{
 

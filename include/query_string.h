@@ -1,8 +1,8 @@
 #ifndef SEARCH_QUERY_STRING_H
 #define SEARCH_QUERY_STRING_H
 
-#include <string>
 #include <cstring>
+#include <string>
 
 class query_string{
  public:

@@ -1,8 +1,8 @@
 #ifndef FILEFINDER_H
 #define FILEFINDER_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 struct node{
   node(const std::string& fil, const std::string&  loc,int lev, bool id):
