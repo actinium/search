@@ -3,7 +3,7 @@ CFLAGS=-I$(INCDIR) --std=c++11 -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
 
 VERSION = 0.1
 
-INCDIR=include
+INCDIR=src
 SRCDIR=src
 SCRIPTDIR=script
 OBJDIR=obj
