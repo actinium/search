@@ -1,8 +1,8 @@
 #ifndef SEARCH_QUERY_STRING_H
 #define SEARCH_QUERY_STRING_H
 
-#include <string>
 #include <cstring>
+#include <string>
 
 class query_string{
  public:
@@ -35,8 +35,9 @@ class query_string{
     }
     return false;
   }
-  bool found_in(std::string filename){
-    return filename.find(str) != std::string::npos;
+  bool is_part_of(std::string lowercase_filename){
+    std::string lowercase_str = str;
+    return lowercase_filename.find(lowercase_str) != std::string::npos;
   }
   const char* get_str(){
     return str.c_str();

@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include <algorithm>
+#include <string>
 
 #include "filefinder.h"
 #include "options.h"
@@ -19,7 +20,7 @@ std::vector<node> search(query_string qstr){
   if( str != ""){
     int count = 1;
     for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
-      if(qstr.found_in(files[i].filename)){
+      if(qstr.is_part_of(files[i].lowercase_filename)){
         result.push_back(files[i]);
         count++;
       }

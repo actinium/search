@@ -1,9 +1,12 @@
 #include "options.h"
-#include <unistd.h>
+
 #include <cstdio>
 #include <cstdlib>
+#include <unistd.h>
+
 #include <string>
 #include <getopt.h>
+
 
 program_options options = {".",false,false,false,false,false,8 };
 

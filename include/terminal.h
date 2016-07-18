@@ -1,10 +1,10 @@
 #ifndef SEARCH_TERMINAL_H
 #define SEARCH_TERMINAL_H
 
-#include "filefinder.h"
-
 #include <termios.h>
 #include <unistd.h>
+
+#include "filefinder.h"
 
 class terminal{
  public:

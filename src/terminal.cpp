@@ -1,5 +1,8 @@
 #include "terminal.h"
 
+#include <termios.h>
+#include <unistd.h>
+
 #include "filefinder.h"
 #include "options.h"
 
