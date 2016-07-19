@@ -1,5 +1,6 @@
 CXX=clang++
 CFLAGS=-I$(INCDIR) --std=c++11 -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
+LINKFLAGS=-licuuc -licuio
 
 VERSION = 0.1
 
@@ -24,7 +25,7 @@ init_search: $(SCRIPTDIR)/gen_search_init.sh
 
 searcher: $(OBJECTS)
 	@echo "\033[1m\033[95m[Building $@]\033[0m"
-	$(CXX) -o $@ $^ $(CFLAGS)
+	$(CXX) -o $@ $^ $(CFLAGS) $(LINKFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 	@echo "\033[1m\033[95m[Compiling $<]\033[0m"
