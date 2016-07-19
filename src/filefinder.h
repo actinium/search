@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 
+#include "string_util.h"
+
 struct node{
   node(const std::string& fil, const std::string&  loc,int lev, bool id):
       filename(fil),lowercase_filename(fil),location(loc),level(lev),is_dir(id){
-    // TODO: Make lowercase_filename lowercase
+    lowercase_filename = to_lowercase(filename);
   }
   std::string filename;
   std::string lowercase_filename;
