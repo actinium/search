@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string to_lowercase(std::string str);
+std::string to_lowercase(const std::string& str);
 
 #endif
