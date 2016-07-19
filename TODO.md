@@ -1,6 +1,7 @@
 #Todo
 
 - add long options support
+- add option to only search for specific file-type
 - exit search with escape (Needs new way to handle input)
 
 ##### terminal:
