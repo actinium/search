@@ -19,6 +19,7 @@ class query_string{
     // TODO: remove multibyte utf8 character
     if(pos > 0){
       str.erase(pos-1,1);
+      lowercase_str = to_lowercase(str);
       pos--;
     }
   }
