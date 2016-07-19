@@ -37,14 +37,14 @@ class query_string{
     }
     return false;
   }
-  bool is_part_of(std::string lowercase_filename){
+  bool is_part_of(std::string lowercase_filename) const{
     std::string lowercase_str = to_lowercase(str);
     return lowercase_filename.find(lowercase_str) != std::string::npos;
   }
-  const char* get_str(){
+  const char* get_str() const{
     return str.c_str();
   }
-  std::size_t get_pos(){
+  std::size_t get_pos() const{
     // TODO: calculate ut8 pos
     return pos;
   }
