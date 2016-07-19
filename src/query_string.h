@@ -8,10 +8,11 @@
 
 class query_string{
  public:
-  query_string():str(""),pos(0){}
-  query_string(const char* s):str(s),pos(strlen(s)){}
+  query_string():str(""),lowercase_str(""),pos(0){}
+  query_string(const char* s):str(s),lowercase_str(s),pos(strlen(s)){}
   void add(char c){
     str.insert(pos, 1, c);
+    lowercase_str = to_lowercase(str);
     pos++;
   }
   void remove(){
@@ -38,7 +39,6 @@ class query_string{
     return false;
   }
   bool is_part_of(std::string lowercase_filename) const{
-    std::string lowercase_str = to_lowercase(str);
     return lowercase_filename.find(lowercase_str) != std::string::npos;
   }
   const char* get_str() const{
@@ -50,6 +50,7 @@ class query_string{
   }
  private:
   std::string str;
+  std::string lowercase_str;
   std::size_t pos;
 };
 
