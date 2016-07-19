@@ -4,6 +4,8 @@
 #include <cstring>
 #include <string>
 
+#include "string_util.h"
+
 class query_string{
  public:
   query_string():str(""),pos(0){}
@@ -36,7 +38,7 @@ class query_string{
     return false;
   }
   bool is_part_of(std::string lowercase_filename){
-    std::string lowercase_str = str;
+    std::string lowercase_str = to_lowercase(str);
     return lowercase_filename.find(lowercase_str) != std::string::npos;
   }
   const char* get_str(){
