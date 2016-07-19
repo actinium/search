@@ -13,7 +13,7 @@
 
 std::vector<node> files;
 
-std::vector<node> search(query_string qstr){
+std::vector<node> search(const query_string& qstr){
   std::vector<node> result;
 
   std::string str(qstr.get_str());
