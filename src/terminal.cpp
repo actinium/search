@@ -67,13 +67,13 @@ void terminal::print_search_line(std::string str, int pos) const{
 }
 
 
-void terminal::print_result(const terminal& term,const std::vector<node>& result, std::size_t selected) const{
-  term.restore_cursor_pos();
+void terminal::print_result(const std::vector<node>& result, std::size_t selected) const{
+  restore_cursor_pos();
   for(int i=0; i < options.number_of_result_lines; ++i){
     fprintf(stderr,"\n");
-    term.erase_line();
+    erase_line();
   }
-  term.restore_cursor_pos();
+  restore_cursor_pos();
 
   for(std::size_t i=1; i <= result.size(); ++i){
     fprintf(stderr,"\n");

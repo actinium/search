@@ -19,6 +19,7 @@ class query_string{
     // TODO: remove multibyte utf8 character
     if(pos > 0){
       str.erase(pos-1,1);
+      lowercase_str = to_lowercase(str);
       pos--;
     }
   }
@@ -47,6 +48,9 @@ class query_string{
   std::size_t get_pos() const{
     // TODO: calculate ut8 pos
     return pos;
+  }
+  bool is_empty() const{
+    return str.size() == 0;
   }
  private:
   std::string str;

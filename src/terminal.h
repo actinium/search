@@ -21,7 +21,7 @@ class terminal{
   void cursor_down(int n = 1) const;
 
   void print_search_line(std::string str, int pos) const;
-  void print_result(const terminal& term,const std::vector<node>& result, std::size_t selected) const;
+  void print_result(const std::vector<node>& result, std::size_t selected) const;
 
  private:
   struct termios oldt;

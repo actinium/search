@@ -16,8 +16,7 @@ std::vector<node> files;
 std::vector<node> search(const query_string& qstr){
   std::vector<node> result;
 
-  std::string str(qstr.get_str());
-  if( str != ""){
+  if( !qstr.is_empty() ){
     int count = 1;
     for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
       if(qstr.is_part_of(files[i].lowercase_filename)){
@@ -67,7 +66,7 @@ int main(int argc, char* argv[]){
           if(selected > 0){
             selected--;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
@@ -75,7 +74,7 @@ int main(int argc, char* argv[]){
           if(selected > results.size()-1){
             selected = results.size()-1;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'C'){ // right
@@ -92,7 +91,7 @@ int main(int argc, char* argv[]){
           }else{
             selected = results.size()-1;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }
@@ -102,7 +101,7 @@ int main(int argc, char* argv[]){
       if(selected > results.size()-1){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else if(c == 10){ // enter
@@ -125,7 +124,7 @@ int main(int argc, char* argv[]){
       if(results.size()==0){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else{
@@ -138,7 +137,7 @@ int main(int argc, char* argv[]){
       if(results.size()==0){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }
