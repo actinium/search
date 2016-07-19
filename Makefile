@@ -1,6 +1,6 @@
 CXX=clang++
 CFLAGS=-I$(INCDIR) --std=c++11 -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
-LINKFLAGS=-licuuc -licuio
+LINKFLAGS=-licuuc
 
 VERSION = 0.1
 

@@ -1,8 +1,6 @@
 #include "string_util.h"
 
 #include <unicode/unistr.h>
-#include <unicode/ustream.h>
-#include <unicode/locid.h>
 
 std::string to_lowercase(const std::string& str){
   icu::UnicodeString someUString(str.c_str());
