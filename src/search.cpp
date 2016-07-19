@@ -67,7 +67,7 @@ int main(int argc, char* argv[]){
           if(selected > 0){
             selected--;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'B'){ // down
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
           if(selected > results.size()-1){
             selected = results.size()-1;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }else if(c == 'C'){ // right
@@ -92,7 +92,7 @@ int main(int argc, char* argv[]){
           }else{
             selected = results.size()-1;
           }
-          term.print_result(term, results, selected);
+          term.print_result(results, selected);
           term.restore_cursor_pos();
           term.cursor_right(qstr.get_pos()+1);
         }
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]){
       if(selected > results.size()-1){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else if(c == 10){ // enter
@@ -125,7 +125,7 @@ int main(int argc, char* argv[]){
       if(results.size()==0){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }else{
@@ -138,7 +138,7 @@ int main(int argc, char* argv[]){
       if(results.size()==0){
         selected = 0;
       }
-      term.print_result(term, results, selected);
+      term.print_result(results, selected);
       term.restore_cursor_pos();
       term.cursor_right(qstr.get_pos()+1);
     }
