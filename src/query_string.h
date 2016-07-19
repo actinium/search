@@ -49,6 +49,9 @@ class query_string{
     // TODO: calculate ut8 pos
     return pos;
   }
+  bool is_empty() const{
+    return str.size() == 0;
+  }
  private:
   std::string str;
   std::string lowercase_str;

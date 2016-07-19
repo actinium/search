@@ -16,8 +16,7 @@ std::vector<node> files;
 std::vector<node> search(const query_string& qstr){
   std::vector<node> result;
 
-  std::string str(qstr.get_str());
-  if( str != ""){
+  if( !qstr.is_empty() ){
     int count = 1;
     for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
       if(qstr.is_part_of(files[i].lowercase_filename)){
