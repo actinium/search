@@ -21,7 +21,7 @@ struct node{
 
 extern std::vector<node> files;
 
-void find_files(std::vector<node>&);
+void find_files();
 
 std::vector<node> search(const query_string&);
 

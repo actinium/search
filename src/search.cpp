@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     return 0;
   }
 
-  find_files(files);
+  find_files();
 
   std::sort(files.begin(),files.end(),[](const node& n1, const node& n2){
             return n1.level < n2.level;
