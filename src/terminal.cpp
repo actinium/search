@@ -7,7 +7,7 @@
 #include "options.h"
 
 terminal::terminal(){
-  // save and copy terminal settings
+  // save old terminal settings
   tcgetattr( STDIN_FILENO, &oldt);
   newt = oldt;
 
@@ -26,7 +26,7 @@ terminal::terminal(){
 }
 
 terminal::~terminal(){
-  // restore terminal settings
+  // restore old terminal settings
   tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
 }
 
