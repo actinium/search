@@ -7,7 +7,9 @@
 #include <string>
 #include <getopt.h>
 
-
+// Global struct which stores command line options.
+// As default all flags are false, the search directory is the current
+// directory and 8 lines are used to print results.
 program_options options = {".",false,false,false,false,false,8 };
 
 bool get_options(int argc, char* argv[]){

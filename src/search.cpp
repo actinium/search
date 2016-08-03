@@ -10,25 +10,6 @@
 #include "query_string.h"
 #include "terminal.h"
 
-
-std::vector<node> files;
-
-std::vector<node> search(const query_string& qstr){
-  std::vector<node> result;
-
-  if( !qstr.is_empty() ){
-    int count = 1;
-    for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
-      if(qstr.is_part_of(files[i].lowercase_filename)){
-        result.push_back(files[i]);
-        count++;
-      }
-    }
-  }
-
-  return result;
-}
-
 int main(int argc, char* argv[]){
   if(!get_options(argc, argv)){
     return 1;
@@ -42,7 +23,7 @@ int main(int argc, char* argv[]){
     return 0;
   }
 
-  find_files(files);
+  find_files();
 
   std::sort(files.begin(),files.end(),[](const node& n1, const node& n2){
             return n1.level < n2.level;
