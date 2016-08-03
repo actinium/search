@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "query_string.h"
 #include "string_util.h"
 
 struct node{
@@ -18,6 +19,10 @@ struct node{
   bool is_dir;
 };
 
+extern std::vector<node> files;
+
 void find_files(std::vector<node>&);
+
+std::vector<node> search(const query_string&);
 
 #endif

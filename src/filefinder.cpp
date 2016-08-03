@@ -37,10 +37,28 @@ int dirTree(const char *pathname, const struct stat *, int type,
 
 }
 
+std::vector<node> files = std::vector<node>{};
+
 void find_files(std::vector<node>& ns){
   nodes = &ns;
   int flags = FTW_ACTIONRETVAL;
   if(nftw(options.search_dir.c_str(),dirTree,10,flags)== -1){
     // TODO
   }
+}
+
+std::vector<node> search(const query_string& qstr){
+  std::vector<node> result;
+
+  if( !qstr.is_empty() ){
+    int count = 1;
+    for(std::size_t i=0; i < files.size() && count <=options.number_of_result_lines; ++i){
+      if(qstr.is_part_of(files[i].lowercase_filename)){
+        result.push_back(files[i]);
+        count++;
+      }
+    }
+  }
+
+  return result;
 }
