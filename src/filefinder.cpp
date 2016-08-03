@@ -8,6 +8,7 @@
 #include <string>
 
 #include "options.h"
+#include "query_string.h"
 
 namespace{
 
