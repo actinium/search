@@ -7,6 +7,7 @@ INCDIR=src
 SRCDIR=src
 SCRIPTDIR=script
 OBJDIR=obj
+INSTALLDIR?=/usr/local/bin
 
 DIR_GUARD=@mkdir -p $(@D)
 
@@ -34,33 +35,30 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 .PHONY: install
 install: searcher
 	@echo "\033[1m\033[95m[Installing search]\033[0m"
-	@id_check=`id -u`; \
-	if test $$id_check != 0; \
-	then \
-		echo "\033[1m\033[91mError: \033[21m\033[39mInstalling search requires root privileges!\033[0m"; \
-		return 1; \
-	else \
-		return 0; \
-	fi
-	cp searcher /usr/local/bin/searcher
-	$(SCRIPTDIR)/gen_search_init.sh /usr/local/bin
+	cp searcher $(INSTALLDIR)/searcher
+	$(SCRIPTDIR)/gen_search_init.sh $(INSTALLDIR)
 
 .PHONY: uninstall
 uninstall:
 	@echo "\033[1m\033[95m[Uninstalling search]\033[0m"
-	@id_check=`id -u`; \
-	if test $$id_check != 0; \
-	then \
-		echo "\033[1m\033[91mError: \033[21m\033[39mUninstalling search requires root privileges!\033[0m"; \
-		return 1; \
-	else \
-		return 0; \
-	fi
-	rm -f /usr/local/bin/init_search
-	rm -f /usr/local/bin/searcher
+	rm -f $(INSTALLDIR)/init_search
+	rm -f $(INSTALLDIR)/searcher
 
 .PHONY:clean
 clean:
 	@echo "\033[1m\033[95m[Cleaning up]\033[0m"
 	rm -rf $(OBJDIR) init_search searcher
+
+.PHONY:help
+help:
+	@echo "Makefile for search"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all                      - build init_search and searcher."
+	@echo "  init_search              - build init_search."
+	@echo "  searcher                 - build searcher."
+	@echo "  install   [INSTALLDIR=?] - install search to INSTALLDIR (deafult is /usr/local/dir)"
+	@echo "  uninstall [INSTALLDIR=?] - remove search from INSTALLDIR (deafult is /usr/local/dir)"
+	@echo "  clean                    - remove compiled files."
+	@echo "  help                     - show this message."
 
