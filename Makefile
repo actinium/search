@@ -45,7 +45,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 ################################################################################
 .PHONY: install
 install: searcher
-	@echo "\033[1m\033[95m[Installing search]\033[0m"
+	@echo "\033[1m\033[95m[Installing search in $(INSTALLDIR)]\033[0m"
 	cp searcher $(INSTALLDIR)/searcher
 	$(SCRIPTDIR)/gen_search_init.sh $(INSTALLDIR)
 
@@ -54,7 +54,7 @@ install: searcher
 ################################################################################
 .PHONY: uninstall
 uninstall:
-	@echo "\033[1m\033[95m[Uninstalling search]\033[0m"
+	@echo "\033[1m\033[95m[Uninstalling search from $(INSTALLDIR)]\033[0m"
 	rm -f $(INSTALLDIR)/init_search
 	rm -f $(INSTALLDIR)/searcher
 
@@ -77,7 +77,7 @@ help:
 	@echo "  all                      - build init_search and searcher."
 	@echo "  init_search              - build init_search."
 	@echo "  searcher                 - build searcher."
-	@echo "  install   [INSTALLDIR=?] - install search to INSTALLDIR (deafult is /usr/local/bin)"
+	@echo "  install   [INSTALLDIR=?] - install search in INSTALLDIR (deafult is /usr/local/bin)"
 	@echo "  uninstall [INSTALLDIR=?] - remove search from INSTALLDIR (deafult is /usr/local/bin)"
 	@echo "  clean                    - remove compiled files."
 	@echo "  help                     - show this message."
