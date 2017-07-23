@@ -1,22 +1,31 @@
 CXX=clang++
 CFLAGS=-I$(INCDIR) --std=c++11 -Wall -Wextra -DSEARCHVERSION=\"$(VERSION)\"
 LINKFLAGS=-licuuc
+DIR_GUARD=@mkdir -p $(@D)
 
 VERSION = 0.1
 
+################################################################################
+#	Directories
+################################################################################
 INCDIR=src
 SRCDIR=src
 SCRIPTDIR=script
 OBJDIR=obj
+INSTALLDIR?=/usr/local/bin
 
-DIR_GUARD=@mkdir -p $(@D)
-
+################################################################################
+# Files
+################################################################################
 _INCLUDES=options.h filefinder.h query_string.h string_util.h terminal.h
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
 _OBJECTS=search.o options.o filefinder.o string_util.o terminal.o
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
+################################################################################
+# Build Targets
+################################################################################
 all: init_search searcher
 
 init_search: $(SCRIPTDIR)/gen_search_init.sh
@@ -32,36 +41,45 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
+################################################################################
+# Install
+################################################################################
 .PHONY: install
 install: searcher
-	@echo "\033[1m\033[95m[Installing search]\033[0m"
-	@id_check=`id -u`; \
-	if test $$id_check != 0; \
-	then \
-		echo "\033[1m\033[91mError: \033[21m\033[39mInstalling search requires root privileges!\033[0m"; \
-		return 1; \
-	else \
-		return 0; \
-	fi
-	cp searcher /usr/local/bin/searcher
-	$(SCRIPTDIR)/gen_search_init.sh /usr/local/bin
+	@echo "\033[1m\033[95m[Installing search in $(INSTALLDIR)]\033[0m"
+	cp searcher $(INSTALLDIR)/searcher
+	$(SCRIPTDIR)/gen_search_init.sh $(INSTALLDIR)
 
+################################################################################
+# Uninstall
+################################################################################
 .PHONY: uninstall
 uninstall:
-	@echo "\033[1m\033[95m[Uninstalling search]\033[0m"
-	@id_check=`id -u`; \
-	if test $$id_check != 0; \
-	then \
-		echo "\033[1m\033[91mError: \033[21m\033[39mUninstalling search requires root privileges!\033[0m"; \
-		return 1; \
-	else \
-		return 0; \
-	fi
-	rm -f /usr/local/bin/init_search
-	rm -f /usr/local/bin/searcher
+	@echo "\033[1m\033[95m[Uninstalling search from $(INSTALLDIR)]\033[0m"
+	rm -f $(INSTALLDIR)/init_search
+	rm -f $(INSTALLDIR)/searcher
 
+################################################################################
+# Clean
+################################################################################
 .PHONY:clean
 clean:
 	@echo "\033[1m\033[95m[Cleaning up]\033[0m"
 	rm -rf $(OBJDIR) init_search searcher
+
+################################################################################
+# Help
+################################################################################
+.PHONY:help
+help:
+	@echo "Makefile for search"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all                      - build init_search and searcher."
+	@echo "  init_search              - build init_search."
+	@echo "  searcher                 - build searcher."
+	@echo "  install   [INSTALLDIR=?] - install search in INSTALLDIR (deafult is /usr/local/bin)"
+	@echo "  uninstall [INSTALLDIR=?] - remove search from INSTALLDIR (deafult is /usr/local/bin)"
+	@echo "  clean                    - remove compiled files."
+	@echo "  help                     - show this message."
 

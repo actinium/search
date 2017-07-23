@@ -1,6 +1,5 @@
 #Todo
 
-- add long options support
 - add option to only search for specific file-type
 - exit search with escape (Needs new way to handle input)
 
@@ -13,6 +12,10 @@
 
 - utf-8 support (Maybe use [ICU](http://site.icu-project.org/))
 - make search case insensitive
+
+##### threads:
+
+- index files in a background thread and immediately enable input
 
 ##### portability(Maybe):
 
